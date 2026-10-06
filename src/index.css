@@ -1,0 +1,151 @@
+:root {
+  --primary: #3A41E8; /* Vibrant Blue */
+  --primary-light: #5057EE; /* Soft Highlight Blue */
+  --primary-dark: #000000; /* Black */
+  --accent: #E5E071; /* Pastel Yellow */
+  --text-light: #FFFFFF; /* White */
+  --text-dark: #000000; /* Black */
+  --background: #3A41E8; /* Base app background */
+  --text-main: #FFFFFF;
+  --path-color: rgba(255, 255, 255, 0.4);
+  --image-filter: none;
+  --image-blend: screen;
+  --card-bg: var(--accent);
+  --card-border: var(--accent);
+  --card-text: #000000;
+}
+
+[data-theme="light"] {
+  --background: #FFFFFF;
+  --primary-light: #EBF0FF;
+  --text-main: #3A41E8;
+  --path-color: rgba(58, 65, 232, 0.4); /* #3A41E8 with 0.4 opacity */
+  --image-filter: invert(1);
+  --image-blend: multiply;
+  --card-bg: var(--accent);
+  --card-border: var(--accent);
+  --card-text: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.title-font {
+  font-family: 'Dela Gothic One', 'Lilita One', sans-serif;
+  letter-spacing: 1px;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-dark);
+  background-color: var(--background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* Prevent native scrolling for app-like feel */
+  touch-action: none; /* Disable browser handling of gestures */
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+
+input {
+  font-family: inherit;
+  outline: none;
+}
+
+/* App Wrapper for PWA feel */
+.app-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--primary);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+/* Common UI Elements */
+.circle-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: radial-gradient(circle, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--text-light);
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+}
+
+.circle-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.circle-btn:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Yellow glow */
+}
+
+/* Screens */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+/* Responsive Desktop Frame */
+@media (min-width: 600px) {
+  body {
+    background: radial-gradient(circle at 50% 20%, #1c224b 0%, #0b0d1e 100%) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .app-container {
+    max-width: 440px;
+    height: 100%;
+    max-height: 900px;
+    border-radius: 38px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+  }
+}
