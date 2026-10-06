@@ -13,8 +13,8 @@ export default defineConfig(() => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon.png'],
         manifest: {
-          name: "Jean 3:16 — Le Chemin vers l'Espérance",
-          short_name: 'Jean 3:16',
+          name: "J316",
+          short_name: "J316",
           description: "Une expérience interactive et bienveillante pour explorer et partager le message de l'Évangile à travers Jean 3:16.",
           theme_color: '#3A41E8',
           background_color: '#3A41E8',
