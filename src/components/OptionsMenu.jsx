@@ -88,7 +88,7 @@ export default function OptionsMenu({ isOpen, onClose, onOpenTutorial }) {
                   <span>{t('options.about')}</span>
                 </div>
                 <a href="https://www.egliseboom.fr/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', transition: 'transform 0.2s' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
-                  <img src="/logo_eglise_boom.png" alt="Église Boom" style={{ width: '100px', objectFit: 'contain' }} />
+                  <img src={`${import.meta.env.BASE_URL}logo_eglise_boom.png`} alt="Église Boom" style={{ width: '100px', objectFit: 'contain' }} />
                 </a>
               </div>
             </motion.div>

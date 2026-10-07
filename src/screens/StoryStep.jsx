@@ -18,13 +18,15 @@ const STORY_SEQUENCE = [
   'step_success', 'step_21'
 ];
 
+const BASE = import.meta.env.BASE_URL;
+
 // Specific steps to show drawings on, to avoid clutter and match the mockup
 const STAMPS = {
-  0: { src: '/stamp_creation.png', offsetX: 0, offsetY: -12, width: 130 },
-  5: { src: '/stamp_sin.png', offsetX: 0, offsetY: -12, width: 140 },
-  8: { src: '/stamp_grace.png', offsetX: 0, offsetY: 12, width: 150 },
-  12: { src: '/stamp_simple_cross.png', offsetX: 0, offsetY: -12, width: 130 },
-  16: { src: '/stamp_book.png', offsetX: -12, offsetY: -12, width: 130 }
+  0: { src: `${BASE}stamp_creation.png`, offsetX: 0, offsetY: -12, width: 130 },
+  5: { src: `${BASE}stamp_sin.png`, offsetX: 0, offsetY: -12, width: 140 },
+  8: { src: `${BASE}stamp_grace.png`, offsetX: 0, offsetY: 12, width: 150 },
+  12: { src: `${BASE}stamp_simple_cross.png`, offsetX: 0, offsetY: -12, width: 130 },
+  16: { src: `${BASE}stamp_book.png`, offsetX: -12, offsetY: -12, width: 130 }
 };
 
 const totalSteps = 17;
