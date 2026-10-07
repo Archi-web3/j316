@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { X, Globe, BookOpen, Info, Download } from 'lucide-react';
+import { X, Globe, BookOpen, Info, Download, Volume2, VolumeX } from 'lucide-react';
 import InstallPromptModal from './InstallPromptModal';
+import { isSoundEnabled, toggleSound, hapticLight, playPopSound } from '../utils/soundAndHaptics';
 
 export default function OptionsMenu({ isOpen, onClose, onOpenTutorial }) {
   const { t, i18n } = useTranslation();
   const [isInstallOpen, setIsInstallOpen] = useState(false);
+  const [soundActive, setSoundActive] = useState(() => isSoundEnabled());
 
   const toggleLanguage = () => {
     const nextLang = i18n.language === 'fr' ? 'en' : 'fr';
@@ -80,6 +82,19 @@ export default function OptionsMenu({ isOpen, onClose, onOpenTutorial }) {
               >
                 <Download size={24} />
                 {t('options.install')}
+              </button>
+
+              <button 
+                onClick={() => {
+                  const next = toggleSound();
+                  setSoundActive(next);
+                  hapticLight();
+                  if (next) playPopSound();
+                }}
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--primary-dark)', fontSize: '1.2rem', marginBottom: '1.5rem', padding: '0.5rem 0' }}
+              >
+                {soundActive ? <Volume2 size={24} /> : <VolumeX size={24} />}
+                {t('options.sound')}: {soundActive ? (i18n.language === 'fr' ? 'Activé' : 'On') : (i18n.language === 'fr' ? 'Désactivé' : 'Off')}
               </button>
 
               <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>

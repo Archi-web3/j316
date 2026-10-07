@@ -7,6 +7,7 @@ import StoryStep from './screens/StoryStep'
 import OptionsMenu from './components/OptionsMenu'
 import ResourcesMenu from './components/ResourcesMenu'
 import Tutorial from './screens/Tutorial'
+import ProfileScreen from './screens/ProfileScreen'
 
 const storySteps = [
   'step_1', 'step_2', 'step_3', 'step_4', 'step_5', 
@@ -109,7 +110,7 @@ function App() {
           <Home 
             key="home"
             onNext={handleBegin} 
-            onGoToProfile={() => setCurrentScreen('character')}
+            onGoToProfile={() => setCurrentScreen('profile')}
             onOpenOptions={() => setIsOptionsOpen(true)}
             onOpenResources={() => setIsResourcesOpen(true)}
           />
@@ -139,6 +140,18 @@ function App() {
             direction={direction}
             isLast={storyIndex === storySteps.length - 1}
             onGoHome={goHome}
+          />
+        )}
+        {currentScreen === 'profile' && (
+          <ProfileScreen
+            key="profile"
+            guideName={guideName}
+            guideAvatar={guideAvatar}
+            onBack={() => setCurrentScreen('home')}
+            onStartNewJourney={() => {
+              setDirection(1);
+              setCurrentScreen('character');
+            }}
           />
         )}
         {currentScreen === 'tutorial' && (

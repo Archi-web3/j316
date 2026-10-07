@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Play, Compass, BookHeart, User, Settings } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { hapticLight, playPopSound } from '../utils/soundAndHaptics';
 
 const variants = {
   enter: { opacity: 0 },
@@ -92,7 +93,11 @@ export default function Home({ onNext, onGoToProfile, onOpenOptions, onOpenResou
         </h2>
         
         <motion.button 
-          onClick={onNext}
+          onClick={() => {
+            hapticLight();
+            playPopSound();
+            onNext();
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           style={{ 
@@ -118,15 +123,15 @@ export default function Home({ onNext, onGoToProfile, onOpenOptions, onOpenResou
             <Compass size={24} strokeWidth={2.5} />
             <span style={{ fontSize: '0.7rem', fontWeight: 'bold', marginTop: '4px' }}>Parcours</span>
           </div>
-          <div onClick={onOpenResources} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
+          <div onClick={() => { hapticLight(); playPopSound(); onOpenResources(); }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
             <BookHeart size={24} />
             <span style={{ fontSize: '0.7rem', marginTop: '4px' }}>Ressources</span>
           </div>
-          <div onClick={onGoToProfile} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
+          <div onClick={() => { hapticLight(); playPopSound(); onGoToProfile(); }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
             <User size={24} />
             <span style={{ fontSize: '0.7rem', marginTop: '4px' }}>Profil</span>
           </div>
-          <div onClick={onOpenOptions} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
+          <div onClick={() => { hapticLight(); playPopSound(); onOpenOptions(); }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#a0a0a0', cursor: 'pointer' }}>
             <Settings size={24} />
             <span style={{ fontSize: '0.7rem', marginTop: '4px' }}>Réglages</span>
           </div>
