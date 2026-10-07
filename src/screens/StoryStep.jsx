@@ -581,10 +581,44 @@ export default function StoryStep({ stepKey, guideName, friendName, guideAvatar,
 
                       {/* Bubble Screen 10 */}
                       {isBubbleScreen && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', width: '100%' }}>
-                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_11'); }} style={{ padding: '0.65rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem' }}>{t('story.bubble_success')}</motion.button>
-                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_12'); }} style={{ padding: '0.65rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem' }}>{t('story.bubble_good')}</motion.button>
-                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_13'); }} style={{ padding: '0.65rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem' }}>{t('story.bubble_religion')}</motion.button>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', width: '100%' }}>
+                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_11'); }} style={{ padding: '0.75rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem', cursor: 'pointer', boxShadow: '0 3px 10px rgba(58,65,232,0.25)' }}>
+                            🏆 {t('story.bubble_success')}
+                          </motion.button>
+                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_12'); }} style={{ padding: '0.75rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem', cursor: 'pointer', boxShadow: '0 3px 10px rgba(58,65,232,0.25)' }}>
+                            🤝 {t('story.bubble_good')}
+                          </motion.button>
+                          <motion.button whileTap={{ scale: 0.96 }} onClick={() => { hapticLight(); playPopSound(); setActiveBubble('step_13'); }} style={{ padding: '0.75rem 1rem', borderRadius: '20px', backgroundColor: 'var(--primary)', border: 'none', color: '#ffffff', fontWeight: 'bold', fontSize: '0.95rem', cursor: 'pointer', boxShadow: '0 3px 10px rgba(58,65,232,0.25)' }}>
+                            ⛪ {t('story.bubble_religion')}
+                          </motion.button>
+
+                          {/* Direct Continue Button if user wants to proceed directly */}
+                          <motion.button 
+                            whileTap={{ scale: 0.96 }} 
+                            onClick={() => { 
+                              hapticLight(); 
+                              playPopSound(); 
+                              onNext(); 
+                            }} 
+                            style={{ 
+                              marginTop: '0.35rem',
+                              padding: '0.65rem 1rem', 
+                              borderRadius: '20px', 
+                              backgroundColor: 'rgba(255,255,255,0.08)', 
+                              border: '1.5px solid var(--primary)', 
+                              color: 'var(--card-text)', 
+                              fontWeight: '600', 
+                              fontSize: '0.88rem', 
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '0.5rem'
+                            }}
+                          >
+                            <span>{t('story.continue_journey')}</span>
+                            <ArrowRight size={16} />
+                          </motion.button>
                         </div>
                       )}
 
@@ -803,16 +837,119 @@ export default function StoryStep({ stepKey, guideName, friendName, guideAvatar,
                   ) : (
                     /* Other Bubbles (e.g., step 11, 12, 13, 20) */
                     <motion.div key={`bubble-${activeBubble}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ minHeight: '65px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                      <h2 style={{ fontSize: '1.15rem', textAlign: 'center', lineHeight: '1.45', color: 'var(--card-text)', margin: '0 0 1rem 0', fontWeight: '500' }}>
+                      {/* Bubble Badge on Step 10 */}
+                      {isBubbleScreen && (
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.75rem' }}>
+                          <span style={{ 
+                            fontSize: '0.8rem', 
+                            fontWeight: 800, 
+                            textTransform: 'uppercase', 
+                            letterSpacing: '0.5px',
+                            color: 'var(--primary)',
+                            backgroundColor: 'rgba(58, 65, 232, 0.12)',
+                            padding: '4px 14px',
+                            borderRadius: '12px'
+                          }}>
+                            {activeBubble === 'step_11' && `🏆 ${t('story.bubble_success')}`}
+                            {activeBubble === 'step_12' && `🤝 ${t('story.bubble_good')}`}
+                            {activeBubble === 'step_13' && `⛪ ${t('story.bubble_religion')}`}
+                          </span>
+                        </div>
+                      )}
+
+                      <h2 style={{ fontSize: '1.15rem', textAlign: 'center', lineHeight: '1.45', color: 'var(--card-text)', margin: '0 0 1.25rem 0', fontWeight: '500' }}>
                         {renderTextWithVerses(t(`story.${activeBubble}`))}
                       </h2>
+
+                      {/* Bubble Action Buttons for Step 10 */}
+                      {isBubbleScreen && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', width: '100%', marginTop: '0.25rem' }}>
+                          <motion.button 
+                            whileTap={{ scale: 0.96 }}
+                            onClick={() => {
+                              hapticLight();
+                              playPopSound();
+                              onNext();
+                            }}
+                            style={{ 
+                              padding: '0.8rem 1rem', 
+                              borderRadius: '22px', 
+                              backgroundColor: 'var(--primary)', 
+                              border: 'none', 
+                              color: '#ffffff', 
+                              fontWeight: 'bold', 
+                              fontSize: '0.98rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '0.5rem',
+                              boxShadow: '0 4px 15px rgba(58, 65, 232, 0.35)',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <span>{t('story.continue_journey')}</span>
+                            <ArrowRight size={18} />
+                          </motion.button>
+
+                          <motion.button 
+                            whileTap={{ scale: 0.96 }}
+                            onClick={() => {
+                              hapticLight();
+                              playPopSound();
+                              setActiveBubble(null);
+                            }}
+                            style={{ 
+                              padding: '0.65rem 1rem', 
+                              borderRadius: '20px', 
+                              backgroundColor: 'transparent', 
+                              border: '1.5px solid var(--card-text)', 
+                              color: 'var(--card-text)', 
+                              fontWeight: '600', 
+                              fontSize: '0.88rem',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '0.4rem',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <ArrowLeft size={16} />
+                            <span>{t('story.btn_back_bubbles')}</span>
+                          </motion.button>
+                        </div>
+                      )}
+
+                      {/* Finish button if step_20 */}
+                      {activeBubble === 'step_20' && (
+                        <motion.button 
+                          whileTap={{ scale: 0.96 }}
+                          onClick={() => {
+                            hapticLight();
+                            playPopSound();
+                            onGoHome();
+                          }}
+                          style={{ 
+                            padding: '0.75rem 1rem', 
+                            borderRadius: '20px', 
+                            backgroundColor: 'var(--primary)', 
+                            border: 'none', 
+                            color: '#ffffff', 
+                            fontWeight: 'bold', 
+                            fontSize: '0.95rem',
+                            marginTop: '0.5rem',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          {isFr ? "Terminer & Retour à l'accueil" : "Finish & Go Home"}
+                        </motion.button>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
               {/* MAIN CONTINUE BUTTON (White Pill with Arrow) */}
-              {(!isBubbleScreen && !isDecisionScreen && (!activeBubble || (activeBubble === 'step_19' && !isGuidedPrayer) || activeBubble === 'step_20' || activeBubble === 'step_11' || activeBubble === 'step_12' || activeBubble === 'step_13')) && (
+              {!isDecisionScreen && !(activeBubble === 'step_19' && isGuidedPrayer) && (
                 <motion.button 
                   whileTap={{ scale: 0.96 }}
                   onClick={() => {

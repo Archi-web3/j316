@@ -34,7 +34,8 @@ const resources = {
         "prayer_step_by_step": "Pray phrase by phrase",
         "prayer_full": "Full prayer",
         "next_phrase": "Next phrase",
-        "finish_prayer": "Say Amen & Continue"
+        "finish_prayer": "Say Amen & Continue",
+        "sound_hint": "Tip: If you hear no sound on iPhone, ensure the physical ring/silent switch on the side is ON."
       },
       "summary": {
         "title": "Evangelism Plan",
@@ -69,6 +70,8 @@ const resources = {
         "btn_back": "Back",
         "btn_back_bubbles": "Back to Choices",
         "btn_continue": "Continue",
+        "continue_journey": "Continue the Journey",
+        "skip_bubbles": "Skip to next step",
         "btn_yes": "YES, I want to!",
         "btn_no": "NO, not right now",
         "bubble_success": "Success",
@@ -141,7 +144,8 @@ const resources = {
         "prayer_step_by_step": "Prier ensemble phrase par phrase",
         "prayer_full": "Voir la prière complète",
         "next_phrase": "Phrase suivante",
-        "finish_prayer": "Dire Amen & Continuer"
+        "finish_prayer": "Dire Amen & Continuer",
+        "sound_hint": "Astuce : Si tu n'entends rien sur iPhone, vérifie le bouton vibreur/silence sur le côté du téléphone !"
       },
       "summary": {
         "title": "Plan d'évangélisation",
@@ -176,6 +180,8 @@ const resources = {
         "btn_back": "Retour",
         "btn_back_bubbles": "Retour aux choix",
         "btn_continue": "Continuer",
+        "continue_journey": "Continuer le parcours",
+        "skip_bubbles": "Passer à l'étape suivante",
         "btn_yes": "OUI, je le veux !",
         "btn_no": "NON, pas pour le moment",
         "bubble_success": "Le Succès",

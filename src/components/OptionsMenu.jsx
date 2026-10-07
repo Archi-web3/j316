@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { X, Globe, BookOpen, Info, Download, Volume2, VolumeX } from 'lucide-react';
 import InstallPromptModal from './InstallPromptModal';
-import { isSoundEnabled, toggleSound, hapticLight, playPopSound } from '../utils/soundAndHaptics';
+import { isSoundEnabled, toggleSound, hapticLight, playPopSound, playChimeSound } from '../utils/soundAndHaptics';
 
 export default function OptionsMenu({ isOpen, onClose, onOpenTutorial }) {
   const { t, i18n } = useTranslation();
@@ -84,18 +84,29 @@ export default function OptionsMenu({ isOpen, onClose, onOpenTutorial }) {
                 {t('options.install')}
               </button>
 
-              <button 
-                onClick={() => {
-                  const next = toggleSound();
-                  setSoundActive(next);
-                  hapticLight();
-                  if (next) playPopSound();
-                }}
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--primary-dark)', fontSize: '1.2rem', marginBottom: '1.5rem', padding: '0.5rem 0' }}
-              >
-                {soundActive ? <Volume2 size={24} /> : <VolumeX size={24} />}
-                {t('options.sound')}: {soundActive ? (i18n.language === 'fr' ? 'Activé' : 'On') : (i18n.language === 'fr' ? 'Désactivé' : 'Off')}
-              </button>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <button 
+                  onClick={() => {
+                    const next = toggleSound();
+                    setSoundActive(next);
+                    hapticLight();
+                    if (next) {
+                      playChimeSound();
+                    } else {
+                      playPopSound();
+                    }
+                  }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--primary-dark)', fontSize: '1.2rem', padding: '0.5rem 0', width: '100%' }}
+                >
+                  {soundActive ? <Volume2 size={24} /> : <VolumeX size={24} />}
+                  {t('options.sound')}: {soundActive ? (i18n.language === 'fr' ? 'Activé' : 'On') : (i18n.language === 'fr' ? 'Désactivé' : 'Off')}
+                </button>
+                {soundActive && (
+                  <p style={{ margin: '0.2rem 0 0 2.5rem', fontSize: '0.78rem', color: '#666', lineHeight: 1.3 }}>
+                    {t('options.sound_hint')}
+                  </p>
+                )}
+              </div>
 
               <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-dark)', marginBottom: '1rem', fontSize: '1rem' }}>
