@@ -54,44 +54,46 @@ export default function InstallPromptModal({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop */}
+        <motion.div
+          key="install-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 120,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.25rem',
+            overflowY: 'auto'
+          }}
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundColor: '#000000',
-              zIndex: 110
-            }}
-          />
-
-          {/* Modal Container */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: '380px',
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              padding: '1.75rem',
-              zIndex: 120,
-              boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-              color: '#1a1a2e',
-              maxHeight: '90vh',
-              overflowY: 'auto'
-            }}
-          >
+            key="install-modal-card"
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 15 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: '100%',
+                maxWidth: '380px',
+                backgroundColor: '#ffffff',
+                borderRadius: '24px',
+                padding: '1.75rem',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.35)',
+                color: '#1a1a2e',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                position: 'relative',
+                margin: 'auto'
+              }}
+            >
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
@@ -274,7 +276,7 @@ export default function InstallPromptModal({ isOpen, onClose }) {
               </div>
             )}
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );

@@ -690,7 +690,7 @@ export default function StoryStep({ stepKey, guideName, friendName, guideAvatar,
 
                           {/* Gospel of Luke (Bible.com) */}
                           <a
-                            href={isFr ? "https://www.bible.com/bible/176/LUK.1.LSG" : "https://www.bible.com/bible/111/LUK.1.NIV"}
+                            href={isFr ? "https://www.bible.com/fr/bible/162/LUK.1.S21" : "https://www.bible.com/bible/111/LUK.1.NIV"}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{

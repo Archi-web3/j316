@@ -139,7 +139,7 @@ const resources = {
         "back_to_resources": "Retour aux ressources",
         "random_verse": "Révéler ma promesse",
         "church_boom": "Découvrir l'Église Boom",
-        "read_luke": "Commencer l'Évangile de Luc (Luc 1)",
+        "read_luke": "Lire l'Évangile de Luc (Segond 21)",
         "share_summary": "Partager avec mon ami(e)",
         "prayer_step_by_step": "Prier ensemble phrase par phrase",
         "prayer_full": "Voir la prière complète",

@@ -68,42 +68,45 @@ export default function VerseCardModal({ isOpen, onClose, friendName }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop */}
+        <motion.div
+          key="verse-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 120,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.25rem',
+            overflowY: 'auto'
+          }}
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.65 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundColor: '#000000',
-              zIndex: 110,
-              backdropFilter: 'blur(4px)'
-            }}
-          />
-
-          {/* Modal Container */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.88, y: 30 }}
+            key="verse-modal-card"
+            initial={{ opacity: 0, scale: 0.9, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.88, y: 30 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 280 }}
+            exit={{ opacity: 0, scale: 0.9, y: 15 }}
+            transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+            onClick={(e) => e.stopPropagation()}
             style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '90%',
-              maxWidth: '390px',
+              width: '100%',
+              maxWidth: '385px',
               backgroundColor: '#ffffff',
               borderRadius: '26px',
-              padding: '1.75rem',
-              zIndex: 120,
-              boxShadow: '0 25px 50px rgba(0,0,0,0.35)',
+              padding: '1.75rem 1.5rem',
+              boxShadow: '0 25px 50px rgba(0,0,0,0.4)',
               color: '#1a1a2e',
-              textAlign: 'center'
+              textAlign: 'center',
+              position: 'relative',
+              maxHeight: '88vh',
+              overflowY: 'auto',
+              margin: 'auto'
             }}
           >
             {/* Close Button */}
@@ -297,7 +300,7 @@ export default function VerseCardModal({ isOpen, onClose, friendName }) {
               </div>
             )}
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );
